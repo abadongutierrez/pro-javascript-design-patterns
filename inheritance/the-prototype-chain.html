@@ -1,0 +1,36 @@
+<html>
+<head>
+<script type="text/javascript">
+/** Clase Person */
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.getName = function() {
+    return this.name;
+}
+
+/** Clase Author */
+function Author(name, books) {
+    Person.call(this, name); // llamar el constructor de Person con el scope de Author
+    this.books = books;
+}
+
+Author.prototype = new Person();
+Author.prototype.constructor = Author;
+Author.prototype.getBooks = function() {
+    return this.books;
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+    p = new Person("Rafael");
+    alert(p.getName());
+    
+    // Author tiene los metodos de Person
+    a = new Author("Antonio", "Libro")
+    alert(a.getName() + ", " + a.getBooks());
+</script>
+</body>
+</html>
